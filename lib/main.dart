@@ -1,48 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_company_name/screen/home_screen.dart';
-import 'package:flutter_company_name/widget/bottom_bar.dart';
+import 'package:english_words/english_words.dart';
 
-void main() {
-  runApp(MyApp());
+void main() => runApp(MyApp());
+
+class RandomWords extends StatefulWidget {
+  @override
+  RandomWordsState createState() => RandomWordsState();
 }
 
-class MyApp extends StatefulWidget {
-  // 위젯 추가 동적 스테이트 관리
-  _MyAppState createState() => _MyAppState();
+class RandomWordsState extends State<RandomWords> {
+  @override
+  Widget build(BuildContext context) {
+    final wordPair = WordPair.random();
+    return Text(wordPair.asPascalCase);
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  // TabController controller;
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'lesser-movie',
-        theme: ThemeData(
-          brightness: Brightness.dark,
-          primaryColor: Colors.black,
-          secondaryHeaderColor: Colors.white,
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Welcome to Flutter'),
         ),
-        home: DefaultTabController(
-            length: 4,
-            child: Scaffold(
-                body: TabBarView(
-                  physics: NeverScrollableScrollPhysics(), // 스크롤 기능 막기,
-                  children: <Widget>[
-                    HomeScreen(),
-                    Container(
-                        child: Center(
-                      child: Text('search'),
-                    )),
-                    Container(
-                        child: Center(
-                      child: Text('save'),
-                    )),
-                    Container(
-                        child: Center(
-                      child: Text('more'),
-                    )),
-                  ],
-                ),
-                bottomNavigationBar: Bottom())));
+        body: Center(
+          child: RandomWords(),
+        ),
+      ),
+    );
   }
 }
