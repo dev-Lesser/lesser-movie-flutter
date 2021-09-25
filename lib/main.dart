@@ -8,21 +8,11 @@ class MyApp extends StatelessWidget {
   // #docregion build
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.list),
-            onPressed: _pushSaved,
-            tooltip: 'Saved Suggestions',
-          ),
-        ],
-      ),
-      body: _buildSuggestions(),
+    return MaterialApp(
+      title: 'Startup Name Generator',
+      home: RandomWords(),
     );
   }
-
   // #enddocregion build
 }
 // #enddocregion MyApp
@@ -64,7 +54,6 @@ class _RandomWordsState extends State<RandomWords> {
         semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
       ),
       onTap: () {
-        // NEW lines from here...
         setState(() {
           if (alreadySaved) {
             _saved.remove(pair);
@@ -75,6 +64,26 @@ class _RandomWordsState extends State<RandomWords> {
       },
     );
   }
+  // #enddocregion _buildRow
+
+  // #docregion RWS-build
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Startup Name Generator'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.list),
+            onPressed: _pushSaved,
+            tooltip: 'Saved Suggestions',
+          ),
+        ],
+      ),
+      body: _buildSuggestions(),
+    );
+  }
+  // #enddocregion RWS-build
 
   void _pushSaved() {
     Navigator.of(context).push(
@@ -108,19 +117,6 @@ class _RandomWordsState extends State<RandomWords> {
       ), // ...to here.
     );
   }
-  // #enddocregion _buildRow
-
-  // #docregion RWS-build
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Startup Name Generator'),
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-  // #enddocregion RWS-build
   // #docregion RWS-var
 }
 // #enddocregion RWS-var
