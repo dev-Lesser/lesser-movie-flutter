@@ -63,8 +63,8 @@ class _ExampleInstagramFilterSelectionState
       builder: (context, value, child) {
         final color = value as Color;
         return Image.network(
-          'https://flutter.dev/docs/cookbook/img-files/effects/instagram-buttons/millenial-dude.jpg',
-          color: color.withOpacity(0.5),
+          'https://lesser-movies.s3.ap-northeast-2.amazonaws.com/20210182.jpg',
+          color: color.withOpacity(0.8),
           colorBlendMode: BlendMode.color,
           fit: BoxFit.cover,
         );
@@ -130,7 +130,7 @@ class _FilterSelectorState extends State<FilterSelector> {
   void _onFilterTapped(int index) {
     _controller.animateToPage(
       index,
-      duration: const Duration(milliseconds: 450),
+      duration: const Duration(milliseconds: 650),
       curve: Curves.ease,
     );
   }
